@@ -953,13 +953,26 @@ class AdbDevice(BaseDevice):
         result = await self.shell(["getprop", prop])
         return result.strip()
 
-    async def list_packages(self) -> typing.List[str]:
+    async def list_packages(self, filter_list: Optional[typing.List[str]] = None) -> typing.List[str]:
         """
+        Args:
+            filter_list (List[str]): package filter
+                -f: See associated file.
+                -d: Filter to only show disabled packages.
+                -e: Filter to only show enabled packages.
+                -s: Filter to only show system packages.
+                -3: Filter to only show third-party packages.
+                -i: See the installer for the packages.
+                -u: Include uninstalled packages.
+                --user user_id: The user space to query.
         Returns:
-            list of package names
+            list of package names (sorted)
         """
         result = []
-        output = await self.shell(["pm", "list", "packages"])
+        cmd = ["pm", "list", "packages"]
+        if filter_list:
+            cmd.extend(filter_list)
+        output = await self.shell(cmd)
         for m in re.finditer(r"^package:([^\s]+)\r?$", output, re.M):
             result.append(m.group(1))
         return list(sorted(result))
