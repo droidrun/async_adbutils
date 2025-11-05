@@ -1,5 +1,4 @@
 httpx
-deprecation
 retry
 apkutils2
 Pillow

@@ -7,7 +7,6 @@ import os
 import typing
 import asyncio
 
-from deprecation import deprecated
 
 from ._adb import AdbConnection
 from ._adb import BaseClient as _BaseClient

@@ -23,7 +23,6 @@ import asyncio
 
 import apkutils2
 import httpx
-from deprecation import deprecated
 from PIL import Image
 
 from PIL import UnidentifiedImageError
