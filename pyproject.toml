@@ -1,16 +1,15 @@
 [project]
 name = "async_adbutils"
-dynamic = ["version"]
+version = "0.1.0"
 description = "Python adb async library for adb service. Fork maintained by DroidRun."
 authors = [
   { name = "tomin", email = "tomin@tomin.com" },
   { name = "shahir", email = "shahir@droidrun.ai" }
 ]
-license = { file = "LICENSE" }
+license = "MIT"
 readme = "README.md"
 requires-python = ">=3.10"
 classifiers = [
-  "License :: OSI Approved :: MIT License",
   "Operating System :: OS Independent",
   "Programming Language :: Python :: 3",
   "Programming Language :: Python :: 3.10",
@@ -27,12 +26,11 @@ repository = "https://github.com/droidrun/adbutils_async"
 documentation = "https://github.com/droidrun/adbutils_async"
 
 [build-system]
-requires = ["setuptools","setuptools-scm[toml]", "wheel", "pbr"]
+requires = ["setuptools", "wheel"]
 build-backend = "setuptools.build_meta"
 
-[tool.setuptools_scm]
-tag_regex = '^(tag\-with\-dash\/v)?(?P<version>\d+[^\+]*)$'
-git_describe_command = 'git describe --tags --match tag-with-dash/v*'
+[tool.setuptools]
+packages = ["async_adbutils"]
 
 [tool.pytest.ini_options]
 minversion = "6.0"

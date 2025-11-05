@@ -30,7 +30,6 @@ class AdbClient(_BaseClient):
         infos = []
         async with await self.make_connection() as c:
             await c.send_command("host:devices")
-            await c.check_okay()
             output = await c.read_string_block()
             for line in output.splitlines():
                 parts = line.strip().split("\t")
@@ -50,7 +49,10 @@ class AdbClient(_BaseClient):
             yield AdbDevice(self, serial=info.serial)
 
     async def device_list(self) -> typing.List[AdbDevice]:
-        return list(await self.iter_device())
+        devices = []
+        async for device in self.iter_device():
+            devices.append(device)
+        return devices
 
     async def device(self, serial: str = None, transport_id: int = None) -> AdbDevice:
         if serial:
