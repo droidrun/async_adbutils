@@ -6,6 +6,6 @@
 from importlib.metadata import version, PackageNotFoundError
 
 try:
-    __version__ = version("adbutils_async")
+    __version__ = version("async_adbutils")
 except PackageNotFoundError:
     __version__ = "unknown"

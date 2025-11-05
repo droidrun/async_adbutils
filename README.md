@@ -1,9 +1,14 @@
-# adbutils_async
-[![PyPI](https://img.shields.io/pypi/v/adbutils_async.svg?color=blue)](https://pypi.org/project/adbutils_async/#history)
+# async_adbutils
+[![PyPI](https://img.shields.io/pypi/v/async_adbutils.svg?color=blue)](https://pypi.org/project/async_adbutils/#history)
 
 Python adb async library for adb service (Only support Python3.10+)
 
-fork from [adbutils](https://github.com/openatx/adbutils)
+**This is a fork maintained by [DroidRun](https://github.com/droidrun/adbutils_async)** with bug fixes and improvements.
+
+**Fork Chain:**
+- Original: [adbutils](https://github.com/openatx/adbutils) (synchronous)
+- Async version: [adbutils_async](https://github.com/touxiaoling/adbutils_async) by tomin
+- This fork: [async_adbutils](https://github.com/droidrun/adbutils_async) by DroidRun (with bug fixes)
 
 **Table of Contents**
 
@@ -36,7 +41,7 @@ fork from [adbutils](https://github.com/openatx/adbutils)
 
 # Install
 ```
-pip3 install adbutils-async
+pip3 install async-adbutils
 ```
 
 # Usage
@@ -45,9 +50,9 @@ Example
 ## Connect ADB Server
 ```python
 import asyncio
-import adbutils_async
+import async_adbutils
 async def main()
-    adb = await adbutils_async.AdbClient(host="127.0.0.1", port=5037)
+    adb = await async_adbutils.AdbClient(host="127.0.0.1", port=5037)
     for info in await adb.list():
         print(info.serial, info.state)
         # <serial> <device|offline>
@@ -56,18 +61,18 @@ async def main()
     print(await adb.device_list())
 
     # Set socket timeout to 10 (default None)
-    adb = await adbutils_async.AdbClient(host="127.0.0.1", port=5037, socket_timeout=10)
+    adb = await async_adbutils.AdbClient(host="127.0.0.1", port=5037, socket_timeout=10)
     print(await adb.device_list())
 if __name__ == "__main__":
     asyncio.run(main())
 ```
 
-The above code can be short to `from adbutils_async import adb`
+The above code can be short to `from async_adbutils import adb`
 
 ## List all the devices and get device object
 ```python
 import asyncio
-from adbutils_async import adb
+from async_adbutils import adb
 
 async def main()
     for d in await adb.device_list():
@@ -175,7 +180,7 @@ I assume there is only one device connected.
 ```python
 import io
 import asyncio
-from adbutils_async import adb
+from async_adbutils import adb
 
 async def main():
     d = await adb.device()
@@ -349,7 +354,7 @@ For further usage, please read [_device.py](adbutils/_device.py) for details.
 
 ```bash
 # List devices
-$ python -m adbutils_async -l
+$ python -m async_adbutils -l
 8d1f93be              MI 5s
 192.168.190.101:5555  Google Nexus 5X - 7.0.0 - API 24 - 1080x1920
 
@@ -533,7 +538,7 @@ gh-md-toc --insert README.md
 <https://github.com/ekalinin/github-markdown-toc>
 
 # Thanks
-- [adbutils](https://github.com/openatx/adbutils)
+- [adbutils](https://github.com/openatx/adbutils) - Original synchronous implementation
 - [swind pure-python-adb](https://github.com/Swind/pure-python-adb)
 - [openstf/adbkit](https://github.com/openstf/adbkit)
 - [ADB Source Code](https://github.com/aosp-mirror/platform_system_core/blob/master/adb)
@@ -541,8 +546,13 @@ gh-md-toc --insert README.md
 - [Awesome ADB](https://github.com/mzlogin/awesome-adb)
 - [JakeWharton/pidcat](https://github.com/JakeWharton/pidcat)
 
+# Maintained By
+This fork is maintained by the **DroidRun** team for use in the [DroidRun Framework](https://github.com/droidrun/droidrun).
+
+**Repository:** https://github.com/droidrun/adbutils_async
+
 # Alternative
-- https://github.com/openatx/adbutils
+- https://github.com/openatx/adbutils - Original synchronous version
 - https://github.com/Swind/pure-python-adb
 
 # Ref

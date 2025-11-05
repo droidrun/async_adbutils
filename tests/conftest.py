@@ -3,7 +3,7 @@
 
 import logging
 import threading
-import adbutils_async as adbutils
+import async_adbutils as adbutils
 import pytest
 import time
 import socket
