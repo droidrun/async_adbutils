@@ -2,7 +2,6 @@ import asyncio
 import os
 import typing
 from typing import Union
-import weakref
 
 from ._utils import adb_path, async_run
 from ._proto import DeviceEvent, AdbCmd
@@ -27,7 +26,6 @@ class AdbConnection(object):
         self.__port = port
         self.__reader, self.__writer = None, None
         self.timeout = 600
-        self._finalizer = None
 
     @property
     def writer(self):
@@ -50,15 +48,14 @@ class AdbConnection(object):
 
     async def safe_connect(self):
         self.__reader, self.__writer = await self._safe_connect()
-        self._finalizer = weakref.finalize(self, self.__writer.close)
 
     @property
     def closed(self) -> bool:
-        return not self.__writer.is_closing()
+        return self.__writer is None or self.__writer.is_closing()
 
     async def close(self):
-        if self._finalizer is not None:
-            self._finalizer()
+        if self.__writer and not self.__writer.is_closing():
+            self.__writer.close()
             await self.__writer.wait_closed()
 
     async def __aenter__(self):

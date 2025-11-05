@@ -451,7 +451,7 @@ class Sync:
             while 1:
                 if AdbCmd.DONE == await c.read(4):
                     break
-                mode, size, mtime, namelen = struct.unpack("<IIII", c.read(16))
+                mode, size, mtime, namelen = struct.unpack("<IIII", await c.read(16))
                 name = await c.read_string(namelen)
                 try:
                     mtime = datetime.datetime.fromtimestamp(mtime)
@@ -460,7 +460,7 @@ class Sync:
                 yield FileInfo(mode, size, mtime, name)
 
     async def list(self, path: str) -> typing.List[str]:
-        return list(await self.iter_directory(path))
+        return [f.path async for f in self.iter_directory(path)]
 
     async def push(
             self,
@@ -632,7 +632,7 @@ class AdbDevice(BaseDevice):
         """
         try:
             return await self.__screencap()
-        except UnidentifiedImageError | AdbError:
+        except (UnidentifiedImageError, AdbError):
             wsize = await self.window_size()
             return Image.new("RGB", wsize)  # return a blank image when screenshot is not allowed
 
@@ -950,7 +950,8 @@ class AdbDevice(BaseDevice):
         return await self.shell(["pm", "uninstall", pkg_name])
 
     async def getprop(self, prop: str) -> str:
-        return await self.shell(["getprop", prop]).strip()
+        result = await self.shell(["getprop", prop])
+        return result.strip()
 
     async def list_packages(self) -> typing.List[str]:
         """
