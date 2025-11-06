@@ -635,6 +635,16 @@ class AdbDevice(BaseDevice):
             wsize = await self.window_size()
             return Image.new("RGB", wsize)  # return a blank image when screenshot is not allowed
 
+    async def screenshot_bytes(self) -> bytes:
+        """Capture screenshot and return raw PNG bytes."""
+        thread_id = threading.get_native_id()
+        tmp_path = f"/data/local/tmp/adbutils-tmp{thread_id}.png"
+        await self.shell(["screencap", "-p", tmp_path])
+        try:
+            return await self.sync.read_bytes(tmp_path)
+        finally:
+            await self.shell(["rm", tmp_path])
+            
     async def switch_screen(self, status: bool):
         """
         turn screen on/off
