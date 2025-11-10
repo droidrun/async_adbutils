@@ -21,9 +21,9 @@ dependencies = ["httpx", "Pillow", "retry", "apkutils2"]
 keywords = ["adb", "adbutils", "async", "android", "droidrun"]
 
 [project.urls]
-homepage = "https://github.com/droidrun/adbutils_async"
-repository = "https://github.com/droidrun/adbutils_async"
-documentation = "https://github.com/droidrun/adbutils_async"
+homepage = "https://github.com/droidrun/async_adbutils"
+repository = "https://github.com/droidrun/async_adbutils"
+documentation = "https://github.com/droidrun/async_adbutils"
 
 [build-system]
 requires = ["setuptools", "wheel"]

@@ -9,7 +9,7 @@ import zipfile
 import httpx
 
 ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
-LIBNAME = "adbutils_async"
+LIBNAME = "async_adbutils"
 BINARIES_DIR = os.path.join(ROOT_DIR, LIBNAME, "binaries")
 
 FNAMES_PER_PLATFORM = {

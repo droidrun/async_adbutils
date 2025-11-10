@@ -3,12 +3,12 @@
 
 Python adb async library for adb service (Only support Python3.10+)
 
-**This is a fork maintained by [DroidRun](https://github.com/droidrun/adbutils_async)** with bug fixes and improvements.
+**This is a fork maintained by [DroidRun](https://github.com/droidrun/async_adbutils)** with bug fixes and improvements.
 
 **Fork Chain:**
 - Original: [adbutils](https://github.com/openatx/adbutils) (synchronous)
 - Async version: [adbutils_async](https://github.com/touxiaoling/adbutils_async) by tomin
-- This fork: [async_adbutils](https://github.com/droidrun/adbutils_async) by DroidRun (with bug fixes)
+- This fork: [async_adbutils](https://github.com/droidrun/async_adbutils) by DroidRun (with bug fixes)
 
 **Table of Contents**
 
@@ -549,7 +549,7 @@ gh-md-toc --insert README.md
 # Maintained By
 This fork is maintained by the **DroidRun** team for use in the [DroidRun Framework](https://github.com/droidrun/droidrun).
 
-**Repository:** https://github.com/droidrun/adbutils_async
+**Repository:** https://github.com/droidrun/async_adbutils
 
 # Alternative
 - https://github.com/openatx/adbutils - Original synchronous version
