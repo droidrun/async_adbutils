@@ -1,6 +1,6 @@
 [project]
 name = "async_adbutils"
-version = "0.1.0"
+version = "0.1.1"
 description = "Python adb async library for adb service. Fork maintained by DroidRun."
 authors = [
   { name = "tomin", email = "tomin@tomin.com" },
