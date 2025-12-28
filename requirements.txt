@@ -2,3 +2,4 @@ httpx
 retry
 apkutils2
 Pillow
+adbutils
